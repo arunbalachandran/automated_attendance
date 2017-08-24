@@ -1,8 +1,8 @@
 # Todo check if data is overwritten or space is left in tempfile
 # add temporary folder creation code because that folder is temporary
 # code warrants a comeback
-# from gevent import monkey
-# monkey.patch_all()
+from gevent import monkey
+monkey.patch_all()
 from flask import Flask, render_template, request, redirect
 from flask import session, flash, url_for
 from flask_mysqldb import MySQL
@@ -11,7 +11,7 @@ from werkzeug.utils import secure_filename
 from boto3.session import Session
 import face_recognition
 from PIL import Image
-# from gevent import wsgi
+from gevent import wsgi
 import io
 import os
 import sys
@@ -532,7 +532,7 @@ def verify_attendance():
                 return redirect(url_for('show_user_home'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
-    # port = int(os.environ.get('PORT', 5000))
-    # http_server = wsgi.WSGIServer(('', port), app)
-    # http_server.serve_forever()
+    # app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    http_server = wsgi.WSGIServer(('', port), app)
+    http_server.serve_forever()
